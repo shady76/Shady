@@ -150,18 +150,19 @@ var Base = function () {
      * @param obj
      * @param event
      */
+    //todo: 待修改
     var tab = function (obj,  event) {
         if(!event) {
             event = 'mouseover';
         }
+
         var o = obj.find('li'),
-               item = obj.siblings().find('.tabItem'),
-               index = o.index();
+               item = obj.siblings().find('.tabItem');
 
         o.on(event, function(){
-            alert(index);
-           $(this).addClass('act').siblings().removeClass('act');
-            item.hide().eq(index).show();
+                var index = o.index();
+               $(this).addClass('act').siblings().removeClass('act');
+                item.hide().eq(index).show();
         });
     }
 
