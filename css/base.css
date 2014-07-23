@@ -1,0 +1,183 @@
+/**
+ * @Author: Shady
+ * @Date: 2014/6/30  14:40
+ * @E-mail: cnshady@gmail.com
+ * @Desc: public style for PatentCloud
+ */
+
+* {
+    outline:none !important;
+    -moz-outline: none !important;
+}
+
+/*添加选中背景色*/
+::-moz-selection {
+    color: #fff;
+    background: #069;
+    text-shadow: none;
+}
+
+::selection {
+    color: #fff;
+    background: #069;
+    text-shadow: none;
+}
+
+html, body {
+    height:100%;
+}
+
+body {
+    color:#666;
+    font-size:12px;
+    font-family:arial, microsoft yahei, simsun, sans-serif;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 16px;
+}
+
+h3 {
+    font-size: 14px;
+}
+
+h4, h5, h6 {
+    font-size: 12px;
+}
+
+/*删除图片和它容器底部之间的间隙*/
+img {
+    vertical-align: middle;
+}
+
+/*只允许调整textarea的垂直高度*/
+textarea {
+    resize: vertical;
+}
+
+ul {
+    margin: 0;
+}
+
+em, i {
+    font-style: normal;
+}
+
+p {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+/*======================================
+                            自定义全局通用样式
+======================================*/
+.fl {
+    float: left !important;
+}
+
+.fr {
+    float: right !important;
+}
+
+/*================对齐方式================*/
+.tl {
+    text-align: left;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+/*================字号================*/
+.f12 {
+    font-size: 12px;
+}
+
+.f14 {
+    font-size: 14px;
+}
+
+.f16 {
+    font-size: 16px;
+}
+
+/*================颜色================*/
+.c3 {
+    color: #333;
+}
+
+.c6 {
+    color: #666;
+}
+
+.c9 {
+    color: #999;
+}
+
+.btn, .form-control {
+    border-radius: 0;
+}
+
+/**
+    add for test
+**/
+
+#hd, #ft {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 60px;
+    color: #fff;
+    background: #3ba6e6;
+}
+
+
+#wrap {
+    width: 1000px;
+    margin: 80px auto;
+    min-height: 1000px;
+}
+
+#goTop {
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    display: block;
+    position: fixed;
+    background-color: #f60;
+    text-align: center;
+    right: 20px;
+    bottom: 20px;
+    padding: 2px 5px 0;
+    display: none;
+}
+
+
+.col { margin-top: 50px;}
+.act { background: #f90;}
+
+.tabHd li {
+    float: left;
+    width: 80px;
+    list-style: none;
+    margin-right: 20px;
+    text-align: center;
+}
+
+.tabBd {
+    margin: 20px;
+}
