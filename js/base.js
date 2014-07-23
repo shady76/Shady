@@ -28,6 +28,8 @@ var Base = function () {
         return $.fn.jquery;
     };
 
+
+
     /**
      * 获取当前浏览器URL路径,并且转化为小写
      * @returns {string}
@@ -35,6 +37,8 @@ var Base = function () {
     var getUrl = function () {
         return window.location.href.toString().toLowerCase();
     };
+
+
 
     /**
      * 判断浏览器是否为现代浏览器（IE9以上）
@@ -47,12 +51,14 @@ var Base = function () {
         }
     };
 
+
+
     /**
      * 全选/反选
      * @param obj （事件驱动对象）
      * @param item （筛选对象）
      * 传入参数为 jQuery对象
-     * 调用方式： checkAll($('#checkAll'), $('.checkbox'));
+     * @use： checkAll($('#checkAll'), $('.checkbox'));
      */
     var checkAll = function (obj, item) {
         obj.click(function() {
@@ -66,6 +72,8 @@ var Base = function () {
             });
         });
     };
+
+
 
     /**
      *  返回顶部
@@ -89,6 +97,75 @@ var Base = function () {
     };
 
 
+
+    /**
+     * 格式化输出时间
+     * @param time
+     * @returns {String}
+     * @use timeFormat('2014/7/23 20:23:15');
+     *
+     * 1、< 60s, 显示为“刚刚”
+     * 2、>= 1min && < 60 min, 显示与当前时间差“XX分钟前”
+     * 3、>= 60min && < 1day, 显示与当前时间差“今天 XX:XX”
+     * 4、>= 1day && < 1year, 显示日期“XX月XX日 XX:XX”
+     * 5、>= 1year, 显示具体日期“XXXX年XX月XX日 XX:XX”
+     */
+
+    var timeFormat = function (time) {
+        var date = new Date(time),  //  传入时间
+               curDate = new Date(),    //  当前时间
+               year = date.getFullYear(),
+               month = date.getMonth() + 1,
+               day = date.getDate(),
+               hour = date.getHours(),
+               minute = date.getMinutes(),
+               curYear = curDate.getFullYear(),
+               curHour = curDate.getHours(),
+               timeStr = '';
+
+        if (year < curYear) {
+            timeStr = year + '年' + month + '月' + day + '日 ' + hour + '：' + minute;
+        } else {
+            var pastTime = curDate - date,
+                   pastHour = pastTime / 360000;
+            if (pastHour > curHour) {
+                timeStr = month + '月' + day + '日 ' + hour + '：' + minute;
+            } else if (pastHour >= 1) {
+                timeStr = '今天 ' + hour + '：' + minute;
+            } else {
+                var pastMinu = curDate.getMinutes() - minute;
+                if (pastMinu > 1) {
+                    timeStr = pastMinu + '分钟前';
+                } else {
+                    timeStr = '刚刚';
+                }
+            }
+        }
+        return timeStr;
+    };
+
+
+    /**
+     * tab选项卡
+     * @param obj
+     * @param event
+     */
+    var tab = function (obj,  event) {
+        if(!event) {
+            event = 'mouseover';
+        }
+        var o = obj.find('li'),
+               item = obj.siblings().find('.tabItem'),
+               index = o.index();
+
+        o.on(event, function(){
+            alert(index);
+           $(this).addClass('act').siblings().removeClass('act');
+            item.hide().eq(index).show();
+        });
+    }
+
+
     /**
      * =============================
      *      返回公共接口函数，供外部调用
@@ -100,6 +177,8 @@ var Base = function () {
         init : function () {
             goTop();
             checkAll($('#checkAll'), $('.checkbox'));
+            timeFormat('2014/7/23 20:23:15');
+            tab($('.tabHd'), 'mouseover');
         },
 
         test : function () {
