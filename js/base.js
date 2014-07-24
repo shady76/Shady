@@ -146,23 +146,35 @@ var Base = function () {
 
 
     /**
-     * tab选项卡
-     * @param obj
-     * @param event
+     *  tab选项卡
+     *  jQuery对象： .tab
+     *
+     *  HTML 结构：
+     *  <div class='tab'>
+     *      <ul class='tabHd'>
+     *          <li>1</li>
+     *          <li>2</li>
+     *          <li>3</li>
+     *       </ul>
+     *        <div class='tabBd'>
+     *            <div class='tabItem'>111</div>
+     *             <div class='tabItem'>222</div>
+     *             <div class='tabItem'>333</div>
+     *        </div>
+     *  </div>
+     *
+     *  CSS 样式：
+     *  .tabItem{display:none;}
+     *  .tabItem:first-child {display: block;}
      */
-    //todo: 待修改
-    var tab = function (obj,  event) {
-        if(!event) {
-            event = 'mouseover';
-        }
-
-        var o = obj.find('li'),
-               item = obj.siblings().find('.tabItem');
-
-        o.on(event, function(){
-                var index = o.index();
-               $(this).addClass('act').siblings().removeClass('act');
-                item.hide().eq(index).show();
+    var tab = function () {
+        var obj = $('.tab'),
+              hd = obj.find('.tabHd li'),
+              bd = hd.parent().siblings('.tabBd').find('.tabItem');
+        hd.mouseover(function() {
+            var index = $(this).index();
+            $(this).addClass('act').siblings().removeClass('act');
+            bd.hide().eq(index).show();
         });
     }
 
@@ -179,11 +191,11 @@ var Base = function () {
             goTop();
             checkAll($('#checkAll'), $('.checkbox'));
             timeFormat('2014/7/23 20:23:15');
-            tab($('.tabHd'), 'mouseover');
+          //  tab();
         },
 
-        test : function () {
-
+        tab : function () {
+            tab();
         }
     };
 
@@ -198,4 +210,5 @@ var Base = function () {
  */
 
 Base.init();
+Base.tab();
 //Base.test();

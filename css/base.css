@@ -181,3 +181,9 @@ p {
 .tabBd {
     margin: 20px;
 }
+.tabItem {
+    display: none;
+}
+.tabItem:first-child {
+    display: block;
+}
