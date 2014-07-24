@@ -97,7 +97,6 @@ var Base = function () {
     };
 
 
-
     /**
      * 格式化输出时间
      * @param time
@@ -176,7 +175,46 @@ var Base = function () {
             $(this).addClass('act').siblings().removeClass('act');
             bd.hide().eq(index).show();
         });
+    };
+
+    /**
+     * 设置cookie
+     *
+     * @param cookieName
+     * @param cookieValue
+     * @param seconds
+     * @param path
+     * @param domain
+     * @param secure
+     */
+    var setCookie = function (cookieName, cookieValue, seconds, path, domain, secure) {
+        var expires = null; //过期时间
+        if (seconds != -1) {
+            expires = new Date();
+            expires.setTime(expires.getTime() + seconds);
+        }
+        document.cookie = [
+            encodeURI(cookieName),
+            '=',
+            encodeURI(cookieValue),
+            (expires ? '; expires=' + expires.toGMTString() : ''),
+            (path ? '; path=' + path : '/'),
+            (domain ? '; domain=' + domain : ''),
+            (secure ? '; secure' : '')
+        ].join('');
+    };
+
+    /**
+     * 获取cookie
+     * @param name
+     * @returns {string}
+     */
+    var  getCookie = function(name) {
+        var cookieStart = document.cookie.indexOf(name);
+        var cookieEnd = document.cookie.indexOf(";", cookieStart);
+        return cookieStart == -1 ? '' : decodeURI(document.cookie.substring(cookieStart + name.length + 1, (cookieEnd > cookieStart ? cookieEnd : document.cookie.length)));
     }
+
 
 
     /**
